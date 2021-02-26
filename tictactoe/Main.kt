@@ -11,7 +11,7 @@ class Cell(private val row: Int, private val col: Int, var mark: Mark) {
         get() = Pair(row, col)
 }
 
-class Grid() {
+class Grid {
     private var _cells = emptyArray<Array<Cell>>()
     val content: CharArray
         get() {
