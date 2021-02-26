@@ -81,18 +81,18 @@ class TicTacToe(private val grid: Grid = Grid()) : Game("Tic-Tac-Toe") {
     val status: Status
         get() {
             val content = grid.content
-            val countOfX = content.count { it == 'X' }
-            val countOfO = content.count { it == 'O' }
+            val countOfX = content.count { it == Mark.X.value }
+            val countOfO = content.count { it == Mark.O.value }
             val countOfEmpty = content.count { it == ' ' }
             var xHas3 = false
             var oHas3 = false
 
             for (row in grid.rowsToWin) {
-                if (content[row.first - 1] == 'X' &&
+                if (content[row.first - 1] == Mark.X.value &&
                     content[row.first - 1] == content[row.second - 1] &&
                     content[row.second - 1] == content[row.third - 1]
                 ) xHas3 = true
-                if (content[row.first - 1] == 'O' &&
+                if (content[row.first - 1] == Mark.O.value &&
                     content[row.first - 1] == content[row.second - 1] &&
                     content[row.second - 1] == content[row.third - 1]
                 ) oHas3 = true
@@ -110,7 +110,7 @@ class TicTacToe(private val grid: Grid = Grid()) : Game("Tic-Tac-Toe") {
 
 
     fun makeMove(row: Int, col: Int) {
-        var nextMove: Move = if (moves.isNotEmpty()) {
+        val nextMove: Move = if (moves.isNotEmpty()) {
             val lastMove = moves.last()
             if (lastMove.nextCell.mark == Mark.X) Move(lastMove.nextCell, Cell(row, col, Mark.O)) else
                 Move(lastMove.nextCell, Cell(row, col, Mark.X))
